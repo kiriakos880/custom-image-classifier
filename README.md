@@ -1,3 +1,35 @@
-🖼️ Modern Custom Image ClassifierA lightweight, desktop-based image classification tool built with PyTorch and Tkinter. This application allows you to perform transfer learning on a pre-trained ResNet-18 model to recognize custom objects without needing a massive dataset or deep coding knowledge.Abdul Basit Noohani✨ FeaturesTransfer Learning: Uses a pre-trained ResNet-18 backbone for high-accuracy feature extraction.Dynamic Class Management: Add or remove custom classes directly through the UI.Real-time Training: Train your custom "head" (linear layer) in seconds using CPU or GPU.Batch Processing: Classify a single image or an entire folder of images at once.Modern UI: A dark-themed, responsive interface with progress bars, ETAs, and activity logs.Extensive Format Support: Works with .jpg, .jpeg, .png, .bmp, .gif, and .webp.🛠️ Installation1. PrerequisitesEnsure you have Python 3.8+ installed.2. Install DependenciesInstall the required machine learning and UI libraries:Bashpip install torch torchvision pillow
-Note: Tkinter usually comes pre-installed with Python. If not, install it via your package manager (e.g., sudo apt-get install python3-tk on Linux).🚀 How to Use1. Launch the AppRun the script to open the GUI:Bashpython your_script_name.py
-2. Define Your ClassesClick + Add Class.Give your class a name (e.g., "Dogs").Select a folder on your computer containing images of that class. The app will automatically copy these into the custom_classes directory.Repeat for at least one more class (the model needs at least 2 to differentiate).3. Train the ModelClick the Train button. The app will:Extract "features" from your images using ResNet-18.Train a new linear layer to recognize your specific classes.Save the model weights to custom_head.pth.4. ClassifySingle Image: Browse for a file and click Classify.Folder: Select a folder containing unknown images and click Classify Folder. The app will provide a prediction and a confidence percentage (e.g., Dogs (98.4%)).📂 Project Structureimages/: Default folder for classification tasks.custom_classes/: Stores the organized images you've added for training.custom_head.pth: The saved weights of your trained classifier.custom_classes.json: Metadata mapping class names to IDs.⚙️ Technical DetailsBackbone: ResNet-18 (Weights: DEFAULT)Input Resolution: $224 \times 224$ pixels.Optimization: Adam optimizer with a learning rate of $0.01$.Data Augmentation: Includes Random Crops, Horizontal Flips, and Color Jittering to improve model robustness during training.Normalization: Standard ImageNet stats:$\text{Mean} = [0.485, 0.456, 0.406]$$\text{STD} = [0.229, 0.224, 0.225]$📝 LicenseThis project is open-source. Feel free to modify the backbone (e.g., swap ResNet-18 for ResNet-50) or the UI styling to suit your needs!
+# Custom Image Classifier
+
+A modern desktop GUI application built with **Python, Tkinter, PyTorch, and Torchvision** that allows you to create your own custom image classes, train a classifier, and classify single images or entire folders.
+
+This project uses a **pretrained ResNet-18 backbone** as a feature extractor and trains a lightweight custom classification head on your own image categories.
+
+---
+
+## ✨ Features
+
+- 🖼️ Classify a **single image**
+- 📁 Batch classify an **entire folder**
+- 🧠 Uses pretrained **ResNet-18** transfer learning
+- 🏷️ Add and remove custom classes
+- 🎯 Train on your own image datasets
+- 📊 Training progress with loss logs
+- 📈 Folder classification progress + ETA
+- 👀 Live image preview
+- 🌙 Modern styled Tkinter UI
+- 🖼️ Supports multiple image formats
+ 
+---
+
+# 📂 Project Structure
+
+```bash
+project/
+│── main.py
+│── custom_head.pth          # Saved trained classifier weights
+│── custom_classes.json      # Saved class labels
+│── images/                  # Default folder for batch classification
+│── custom_classes/
+│    ├── cats/
+│    ├── dogs/
+│    └── cars/
